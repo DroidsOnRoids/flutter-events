@@ -27,6 +27,8 @@ abstract class SpeakersListBlocType implements Disposable {
 
   Stream<SpeakersListBlocState> get stream;
 
+  Sink<String> get searchSink;
+
   void fetch();
 
   void onTryAgainTap();
@@ -37,12 +39,22 @@ class SpeakersListBloc implements SpeakersListBlocType {
 
   SpeakersListBloc({@required NetworkProviderType provider})
       : assert(provider != null),
-        _provider = provider;
+        _provider = provider {
+    _searchStreamController.stream.listen((data) {
+      _onSearchTextChanged(data);
+    });
+  }
 
   final _streamController = StreamController<SpeakersListBlocState>();
+  final _searchStreamController = StreamController<String>();
+
+  SpeakersListBlocContentState _lastContentState;
 
   @override
   Stream<SpeakersListBlocState> get stream => _streamController.stream;
+
+  @override
+  Sink<String> get searchSink => _searchStreamController.sink;
 
   @override
   void fetch() async {
@@ -79,9 +91,11 @@ class SpeakersListBloc implements SpeakersListBlocType {
               job: speaker.job))
           .toList();
 
-      _streamController.add(SpeakersListBlocContentState(
+      _lastContentState = SpeakersListBlocContentState(
           recentSpeakers: recentSpeakersStates,
-          speakersList: speakersListStates));
+          speakersList: speakersListStates);
+
+      _streamController.add(_lastContentState);
     } catch (e) {
       _streamController.add(SpeakersListBlocErrorState(error: e.toString()));
     }
@@ -95,5 +109,19 @@ class SpeakersListBloc implements SpeakersListBlocType {
   @override
   void dispose() {
     _streamController.close();
+    _searchStreamController.close();
+  }
+
+  void _onSearchTextChanged(String text) {
+    if (text != null && text.length > 0) {
+      _streamController.add(SpeakersListBlocContentState(
+          recentSpeakers: _lastContentState.recentSpeakers,
+          speakersList: _lastContentState.speakersList
+              .where((speaker) =>
+                  speaker.name.toLowerCase().contains(text.toLowerCase()))
+              .toList()));
+    } else {
+      _streamController.add(_lastContentState);
+    }
   }
 }

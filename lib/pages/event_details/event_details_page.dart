@@ -16,6 +16,7 @@
 
 import 'package:events/pages/event_details/widgets/image_slider.dart';
 import 'package:events/pages/photos_list/photos_list_page.dart';
+import 'package:events/pages/talk_details/blocs/talk_details_bloc_states.dart';
 import 'package:events/pages/talk_details/talk_details_page.dart';
 import 'package:events/widgets/app_button.dart';
 import 'package:events/widgets/event_description.dart';
@@ -124,7 +125,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           child: Column(
               children: states
                   .map((state) => Container(
-                height: 264,
+                      height: 264,
                       child: TalkCard(
                           speakerImageUrl: state.speakerImageUrl,
                           speakerName: state.speakerName,
@@ -135,8 +136,19 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                             Navigator.push(
                                 context,
                                 CupertinoPageRoute(
-                                    builder: (context) =>
-                                        TalkDetailsPage.build()));
+                                    builder: (context) => TalkDetailsPage.build(
+                                        // TODO: Refactor data passing
+                                        state: TalkDetailsBlocState(
+                                            speakerId: 0,
+                                            speakerImageUrl:
+                                                state.speakerImageUrl,
+                                            speakerName: state.speakerName,
+                                            speakerJob: state.speakerJob,
+                                            date: '02.03.2017',
+                                            time: '07:00 CET',
+                                            talkTitle: state.talkTitle,
+                                            talkDescription:
+                                                state.talkDescription))));
                           })))
                   .toList()),
         ));

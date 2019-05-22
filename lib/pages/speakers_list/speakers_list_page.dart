@@ -15,6 +15,7 @@
 //
 
 import 'package:events/pages/speaker_details/speaker_details_page.dart';
+import 'package:events/pages/speakers_list/widgets/collapsable_container.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/navigation_bar.dart';
 import 'package:events/widgets/network_error.dart';
@@ -43,10 +44,14 @@ class SpeakersListPage extends StatefulWidget {
 class _SpeakersListPageState extends State<SpeakersListPage> {
   SpeakersListBlocType get _bloc => widget._bloc;
 
+  final _focus = FocusNode();
+  bool _isFocused = false;
+
   @override
   void initState() {
     super.initState();
 
+    _focus.addListener(_onFocusChange);
     _bloc.fetch();
   }
 
@@ -55,6 +60,13 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
     _bloc.dispose();
 
     super.dispose();
+  }
+
+  void _onFocusChange() {
+    final isFocused = _focus.hasFocus;
+    setState(() {
+      _isFocused = isFocused;
+    });
   }
 
   @override
@@ -88,6 +100,10 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
             color: AppColors.of(context).whitishGray,
             padding: EdgeInsets.all(8.0),
             child: CupertinoTextField(
+              focusNode: _focus,
+              onChanged: (text) {
+                _bloc.searchSink.add(text);
+              },
               padding: EdgeInsets.all(8.0),
               placeholder: 'Search speakers',
               style: TextStyle(
@@ -99,7 +115,8 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
                 borderRadius: BorderRadius.circular(5.0),
               ),
             )),
-        _buildLastSpeakers(context, data),
+        CollapsableContainer(
+            child: _buildLastSpeakers(context, data), isCollapsed: _isFocused),
         for (final speaker in data.speakersList)
           TapDetector(
             childBuilder: (bool isPressed) => AnimatedContainer(
@@ -162,7 +179,8 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
           child: Stack(fit: StackFit.passthrough, children: [
             PlaceholderImage(
                 image: NetworkImage(data.thumbnailImageUrl),
-                placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                placeholder: AssetImage('images/event_placeholder.png'),
+                // TODO: Replace placeholder
                 fit: BoxFit.cover,
                 width: 150),
             Positioned.fill(
@@ -207,7 +225,8 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
             child: ClipOval(
               child: PlaceholderImage(
                   image: NetworkImage(data.thumbnailImageUrl),
-                  placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                  placeholder: AssetImage('images/event_placeholder.png'),
+                  // TODO: Replace placeholder
                   width: 40,
                   height: 40,
                   fit: BoxFit.cover),
