@@ -14,10 +14,10 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/pages/onboarding/widgets/onboarding_circle.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/dots_indicator.dart';
+import 'package:flutter/cupertino.dart';
 
 class OnboardingPage extends StatefulWidget {
   final GestureTapCallback onContinue;

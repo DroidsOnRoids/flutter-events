@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/widgets.dart';
 import 'package:events/utils/app_colors.dart';
+import 'package:flutter/widgets.dart';
 
 class DateTimeCard extends StatelessWidget {
   DateTimeCard({@required this.date, @required this.time})
@@ -30,7 +30,8 @@ class DateTimeCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-              bottom: BorderSide(color: AppColors.of(context).lightGray))),
+              bottom: BorderSide(
+                  color: AppColors.of(context).lightGray, width: 0.0))),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -54,7 +55,8 @@ class DateTimeCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
             decoration: BoxDecoration(
                 border: Border(
-                    left: BorderSide(color: AppColors.of(context).lightGray))),
+                    left: BorderSide(
+                        color: AppColors.of(context).lightGray, width: 0.0))),
             child: Row(children: <Widget>[
               Container(
                 margin: EdgeInsets.only(right: 8.0),

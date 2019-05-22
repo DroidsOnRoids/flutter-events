@@ -14,14 +14,15 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/pages/speaker_details/speaker_details_page.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/navigation_bar.dart';
 import 'package:events/widgets/network_error.dart';
 import 'package:events/widgets/network_loader.dart';
+import 'package:events/widgets/placeholder_image.dart';
 import 'package:events/widgets/tap_detector.dart';
 import 'package:events/widgets/titled_container.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'blocs/speakers_list_bloc.dart';
 import 'blocs/speakers_list_bloc_states.dart';
@@ -159,11 +160,9 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
       child: ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: Stack(fit: StackFit.passthrough, children: [
-            FadeInImage(
-                fadeInDuration: Duration.zero,
-                fadeOutDuration: Duration.zero,
+            PlaceholderImage(
                 image: NetworkImage(data.thumbnailImageUrl),
-                placeholder: AssetImage('images/event_placeholder.png'),
+                placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
                 fit: BoxFit.cover,
                 width: 150),
             Positioned.fill(
@@ -206,8 +205,12 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             child: ClipOval(
-              child: Image.network(data.thumbnailImageUrl,
-                  width: 40, height: 40, fit: BoxFit.cover),
+              child: PlaceholderImage(
+                  image: NetworkImage(data.thumbnailImageUrl),
+                  placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover),
             ),
           ),
           Expanded(
@@ -215,8 +218,8 @@ class _SpeakersListPageState extends State<SpeakersListPage> {
             decoration: BoxDecoration(
                 border: hasBorder
                     ? Border(
-                        bottom:
-                            BorderSide(color: AppColors.of(context).lightGray))
+                        bottom: BorderSide(
+                            color: AppColors.of(context).lightGray, width: 0.0))
                     : null),
             child: Row(children: <Widget>[
               Expanded(

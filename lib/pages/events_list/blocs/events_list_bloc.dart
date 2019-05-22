@@ -16,11 +16,11 @@
 
 import 'dart:async';
 
+import 'package:events/services/network_provider.dart';
+import 'package:events/utils/disposable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:events/services/network_provider.dart';
-import 'package:events/utils/disposable.dart';
 
 import 'events_list_bloc_states.dart';
 

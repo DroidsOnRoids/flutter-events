@@ -14,9 +14,10 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/navigation_bar.dart';
+import 'package:events/widgets/placeholder_image.dart';
+import 'package:flutter/cupertino.dart';
 
 class TalkDetailsPage extends StatefulWidget {
   TalkDetailsPage();
@@ -33,45 +34,48 @@ class _TalkDetailsPageState extends State<TalkDetailsPage> {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(title: 'LECTURE DETAILS', hasBorder: true),
         child: ListView(children: <Widget>[
-          Container(
-              decoration: BoxDecoration(border: NavigationBar.DEFAULT_BORDER),
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                children: <Widget>[
-                  ClipOval(
-                    child: Image.network(
-                        'https://avatars0.githubusercontent.com/u/4096232?s=460&v=4',
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Oktawian Chojnacki',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  letterSpacing: 1.0,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600)),
-                          Text('iOS Developer',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: AppColors.of(context).darkGray,
-                                  letterSpacing: 1.0,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400))
-                        ],
+          ClipRect(
+            child: Container(
+                decoration: BoxDecoration(border: NavigationBar.DEFAULT_BORDER),
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  children: <Widget>[
+                    ClipOval(
+                        child: PlaceholderImage(
+                            image: NetworkImage(
+                                'https://avatars0.githubusercontent.com/u/4096232?s=460&v=4'),
+                            placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.cover)),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Oktawian Chojnacki',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    letterSpacing: 1.0,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600)),
+                            Text('iOS Developer',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: AppColors.of(context).darkGray,
+                                    letterSpacing: 1.0,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400))
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Image.asset('images/indicator.png')
-                ],
-              )),
+                    Image.asset('images/indicator.png')
+                  ],
+                )),
+          ),
           Container(
               padding: EdgeInsets.all(16.0),
               child: Column(
@@ -85,7 +89,8 @@ class _TalkDetailsPageState extends State<TalkDetailsPage> {
                             letterSpacing: 1.0,
                             fontWeight: FontWeight.w600)),
                   ),
-                  Text('''Testerzy mnie nienawidzą. Posłuchaj o tym jak być mniej beznadziejnym, stosując ten jeden dziwny trick… 
+                  Text(
+                      '''Testerzy mnie nienawidzą. Posłuchaj o tym jak być mniej beznadziejnym, stosując ten jeden dziwny trick… 
 
 Architektura kodu ma za zadanie ulżyć umysłowi, aby mógł się skupić na złożonych problemach.
 

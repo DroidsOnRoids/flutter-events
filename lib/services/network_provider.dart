@@ -17,10 +17,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:http/http.dart';
 import 'package:events/models/event.dart';
 import 'package:events/models/speaker.dart';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart';
 
 abstract class NetworkProviderType {
   factory NetworkProviderType.build() => NetworkProvider(client: Client());

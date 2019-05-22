@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/tap_detector.dart';
+import 'package:flutter/cupertino.dart';
 
 class ContactTopicModal extends StatelessWidget {
   final List<String> children;
@@ -42,7 +42,8 @@ class ContactTopicModal extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(
-                              color: AppColors.of(context).lightGray))),
+                              color: AppColors.of(context).lightGray,
+                              width: 0.0))),
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
@@ -101,7 +102,8 @@ class ContactTopicModal extends StatelessWidget {
                     border: showsBottomBorder
                         ? Border(
                             bottom: BorderSide(
-                                color: AppColors.of(context).lightGray))
+                                color: AppColors.of(context).lightGray,
+                                width: 0.0))
                         : null),
                 child: Text(text,
                     style: TextStyle(

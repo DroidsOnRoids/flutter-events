@@ -14,8 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/widgets/navigation_bar.dart';
+import 'package:events/widgets/placeholder_image.dart';
+import 'package:flutter/cupertino.dart';
 
 class PhotoGalleryPage extends StatelessWidget {
   PhotoGalleryPage({this.heroId});
@@ -30,8 +31,10 @@ class PhotoGalleryPage extends StatelessWidget {
             child: Hero(
                 transitionOnUserGestures: true,
                 tag: heroId,
-                child: Image.network(
-                    'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+                child: PlaceholderImage(
+                    image: NetworkImage(
+                        'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'),
+                    placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
                     fit: BoxFit.cover))));
   }
 }

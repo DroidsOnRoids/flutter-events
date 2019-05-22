@@ -14,11 +14,11 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/app_button.dart';
 import 'package:events/widgets/navigation_bar.dart';
 import 'package:events/widgets/tap_detector.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'blocs/contact_bloc.dart';
 import 'contact_topic_modal.dart';

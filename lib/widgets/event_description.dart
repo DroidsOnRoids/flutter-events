@@ -14,9 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/tap_detector.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'app_button.dart';
 import 'date_time_card.dart';
@@ -77,8 +77,9 @@ class EventDescription extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 16.0),
       decoration: BoxDecoration(
-          border:
-              Border(top: BorderSide(color: AppColors.of(context).lightGray))),
+          border: Border(
+              top: BorderSide(
+                  color: AppColors.of(context).lightGray, width: 0.0))),
       child: _buildTappableCard(
           context: context,
           middle: Column(
@@ -146,8 +147,8 @@ class EventDescription extends StatelessWidget {
                     ? AppColors.of(context).lightGray.withAlpha(128)
                     : null,
                 border: Border(
-                    bottom:
-                        BorderSide(color: AppColors.of(context).lightGray))),
+                    bottom: BorderSide(
+                        color: AppColors.of(context).lightGray, width: 0.0))),
             child: IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

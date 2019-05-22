@@ -14,8 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
+import 'package:events/widgets/placeholder_image.dart';
+import 'package:flutter/cupertino.dart';
 
 class EventCard extends StatelessWidget {
   EventCard({@required this.image, @required this.title, @required this.date})
@@ -43,9 +44,7 @@ class EventCard extends StatelessWidget {
             child: IntrinsicWidth(
                 child: Column(children: <Widget>[
               Expanded(
-                  child: FadeInImage(
-                      fadeInDuration: Duration.zero,
-                      fadeOutDuration: Duration.zero,
+                  child: PlaceholderImage(
                       image: image,
                       placeholder: AssetImage('images/event_placeholder.png'),
                       fit: BoxFit.cover,

@@ -14,12 +14,13 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/models/photo.dart';
 import 'package:events/pages/photo_gallery/photo_gallery_page.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/navigation_bar.dart';
+import 'package:events/widgets/placeholder_image.dart';
 import 'package:events/widgets/tap_detector.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'blocs/photos_list_bloc.dart';
 
@@ -67,11 +68,9 @@ class _PhotosListPageState extends State<PhotosListPage> {
                 child: Hero(
                   transitionOnUserGestures: true,
                   tag: index,
-                  child: FadeInImage(
-                      fadeInDuration: Duration.zero,
-                      fadeOutDuration: Duration.zero,
+                  child: PlaceholderImage(
                       image: NetworkImage(_bloc.photos[index].thumbUrl),
-                      placeholder: AssetImage('images/event_placeholder.png'),
+                      placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
                       fit: BoxFit.cover),
                 ),
               ),

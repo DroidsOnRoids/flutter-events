@@ -14,10 +14,10 @@
 //  limitations under the License.
 //
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:events/models/coordinates.dart';
 import 'package:events/models/photo.dart';
 import 'package:events/models/talk.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'event.g.dart';
 

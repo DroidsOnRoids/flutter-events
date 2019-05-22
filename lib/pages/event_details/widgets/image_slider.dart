@@ -14,8 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/widgets.dart';
 import 'package:events/widgets/dots_indicator.dart';
+import 'package:events/widgets/placeholder_image.dart';
+import 'package:flutter/widgets.dart';
 
 class ImageSlider extends StatefulWidget {
   ImageSlider({this.imageUrls});
@@ -45,9 +46,7 @@ class _ImageSliderState extends State<ImageSlider> {
                   })
                 },
             children: (widget.imageUrls ?? [])
-                .map((imageUrl) => FadeInImage(
-                    fadeInDuration: Duration.zero,
-                    fadeOutDuration: Duration.zero,
+                .map((imageUrl) => PlaceholderImage(
                     image:
                         imageUrl != null ? NetworkImage(imageUrl) : placeholder,
                     placeholder: placeholder,

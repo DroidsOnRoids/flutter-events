@@ -14,15 +14,16 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/pages/talk_details/talk_details_page.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/navigation_bar.dart';
 import 'package:events/widgets/network_error.dart';
 import 'package:events/widgets/network_loader.dart';
 import 'package:events/widgets/overscroll.dart';
+import 'package:events/widgets/placeholder_image.dart';
 import 'package:events/widgets/talk_card.dart';
 import 'package:events/widgets/titled_container.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'blocs/speaker_details_bloc.dart';
 import 'blocs/speaker_details_bloc_states.dart';
@@ -90,7 +91,8 @@ class _SpeakerDetailsPageState extends State<SpeakerDetailsPage> {
           padding: EdgeInsets.only(top: 32.0, bottom: 16.0),
           decoration: BoxDecoration(
               border: Border(
-                  bottom: BorderSide(color: AppColors.of(context).lightGray))),
+                  bottom: BorderSide(
+                      color: AppColors.of(context).lightGray, width: 0.0))),
           child: Column(
             children: <Widget>[
               Container(
@@ -102,8 +104,12 @@ class _SpeakerDetailsPageState extends State<SpeakerDetailsPage> {
                       offset: Offset(0.0, 12.0))
                 ]),
                 child: ClipOval(
-                    child: Image.network(state.avatarUrl,
-                        width: 90, height: 90, fit: BoxFit.cover)),
+                    child: PlaceholderImage(
+                        image: NetworkImage(state.avatarUrl),
+                        placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                        width: 90,
+                        height: 90,
+                        fit: BoxFit.cover)),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 16.0, bottom: 8.0),

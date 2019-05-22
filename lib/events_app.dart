@@ -14,12 +14,12 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/pages/contact/contact_page.dart';
 import 'package:events/pages/events_list/events_list_page.dart';
 import 'package:events/pages/onboarding/onboarding_page.dart';
 import 'package:events/pages/speakers_list/speakers_list_page.dart';
 import 'package:events/utils/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 
 class EventsApp extends StatefulWidget {
   @override

@@ -14,8 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
+import 'package:events/widgets/placeholder_image.dart';
+import 'package:flutter/cupertino.dart';
 
 class TalkCard extends StatelessWidget {
   TalkCard(
@@ -60,14 +61,19 @@ class TalkCard extends StatelessWidget {
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
-                                color: AppColors.of(context).lightGray))),
+                                color: AppColors.of(context).lightGray,
+                                width: 0.0))),
                     padding:
                         EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
                     child: Row(
                       children: <Widget>[
                         ClipOval(
-                            child: Image.network(speakerImageUrl,
-                                width: 40, height: 40, fit: BoxFit.cover)),
+                            child: PlaceholderImage(
+                                image: NetworkImage(speakerImageUrl),
+                                placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                                width: 40,
+                                height: 40,
+                                fit: BoxFit.cover)),
                         Container(
                           margin: EdgeInsets.only(left: 16.0),
                           child: Column(
@@ -97,7 +103,8 @@ class TalkCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
-                                  color: AppColors.of(context).lightGray))),
+                                  color: AppColors.of(context).lightGray,
+                                  width: 0.0))),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[

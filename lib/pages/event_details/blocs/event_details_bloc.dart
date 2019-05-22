@@ -16,9 +16,9 @@
 
 import 'dart:async';
 
-import 'package:intl/intl.dart';
 import 'package:events/services/network_provider.dart';
 import 'package:events/utils/disposable.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 import 'event_details_bloc_states.dart';
@@ -80,8 +80,6 @@ class EventDetailsBloc implements EventDetailsBlocType {
           time: timeFormatter.format(lastEvent.date),
           photos: lastEvent.photos,
           cardStates: cardStates));
-
-      lastEvent.photos.forEach((photo) {print(photo.thumbUrl);});
     } catch (e) {
       _streamController.add(EventDetailsBlocErrorState(error: e.toString()));
     }

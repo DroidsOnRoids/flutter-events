@@ -14,7 +14,6 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/pages/event_details/widgets/image_slider.dart';
 import 'package:events/pages/photos_list/photos_list_page.dart';
 import 'package:events/pages/talk_details/talk_details_page.dart';
@@ -26,6 +25,7 @@ import 'package:events/widgets/network_loader.dart';
 import 'package:events/widgets/overscroll.dart';
 import 'package:events/widgets/talk_card.dart';
 import 'package:events/widgets/titled_container.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'blocs/event_details_bloc.dart';
 import 'blocs/event_details_bloc_states.dart';

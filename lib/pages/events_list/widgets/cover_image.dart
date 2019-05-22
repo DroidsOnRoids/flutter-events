@@ -14,8 +14,9 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
+import 'package:events/widgets/placeholder_image.dart';
+import 'package:flutter/cupertino.dart';
 
 class CoverImage extends StatelessWidget {
   CoverImage({this.imageUrl});
@@ -39,9 +40,7 @@ class CoverImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             child: AspectRatio(
                 aspectRatio: 1.62,
-                child: FadeInImage(
-                    fadeInDuration: Duration.zero,
-                    fadeOutDuration: Duration.zero,
+                child: PlaceholderImage(
                     image:
                         imageUrl != null ? NetworkImage(imageUrl) : placeholder,
                     placeholder: placeholder,

@@ -31,6 +31,7 @@ class Photo {
   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
 
   String get bigUrl => _appendingUrlWithHostIfNeeded(big);
+
   String get thumbUrl => _appendingUrlWithHostIfNeeded(thumb);
 
   String _appendingUrlWithHostIfNeeded(String url) {

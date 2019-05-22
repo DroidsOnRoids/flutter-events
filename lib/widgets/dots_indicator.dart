@@ -14,8 +14,8 @@
 //  limitations under the License.
 //
 
-import 'package:flutter/cupertino.dart';
 import 'package:events/utils/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 
 class DotsIndicator extends StatelessWidget {
   final int numberOfDots;
