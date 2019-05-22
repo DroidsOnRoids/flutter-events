@@ -70,7 +70,9 @@ class TalkCard extends StatelessWidget {
                         ClipOval(
                             child: PlaceholderImage(
                                 image: NetworkImage(speakerImageUrl),
-                                placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                                placeholder:
+                                    AssetImage('images/event_placeholder.png'),
+                                // TODO: Replace placeholder
                                 width: 40,
                                 height: 40,
                                 fit: BoxFit.cover)),
@@ -111,18 +113,23 @@ class TalkCard extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(bottom: 8.0),
                               child: Text(talkTitle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       fontSize: 15.0,
                                       letterSpacing: 1.0,
                                       fontWeight: FontWeight.w600)),
                             ),
-                            Text(talkDescription,
-                                style: TextStyle(
-                                    color: AppColors.of(context).darkGray,
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.87,
-                                    fontWeight: FontWeight.w500,
-                                    height: 1.38))
+                            Expanded(
+                              child: Text(talkDescription,
+                                  style: TextStyle(
+                                      color: AppColors.of(context).darkGray,
+                                      fontSize: 13.0,
+                                      letterSpacing: 0.87,
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.38),
+                                  overflow: TextOverflow.fade),
+                            )
                           ]),
                     ),
                   ),

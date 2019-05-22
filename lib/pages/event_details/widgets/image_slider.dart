@@ -19,7 +19,7 @@ import 'package:events/widgets/placeholder_image.dart';
 import 'package:flutter/widgets.dart';
 
 class ImageSlider extends StatefulWidget {
-  ImageSlider({this.imageUrls});
+  ImageSlider({@required this.imageUrls}) : assert(imageUrls != null);
 
   final List<String> imageUrls;
 
@@ -33,10 +33,17 @@ class _ImageSliderState extends State<ImageSlider> {
   @override
   Widget build(BuildContext context) {
     final placeholder = AssetImage('images/cover_placeholder.png');
+    final pages = widget.imageUrls.isEmpty
+        ? [Image(image: placeholder, fit: BoxFit.cover)]
+        : widget.imageUrls
+            .map((imageUrl) => PlaceholderImage(
+                image: imageUrl != null ? NetworkImage(imageUrl) : placeholder,
+                placeholder: placeholder,
+                fit: BoxFit.cover))
+            .toList();
 
     return Container(
-        child: Stack(
-            children: [
+        child: Stack(children: [
       AspectRatio(
           aspectRatio: 1.62,
           child: PageView(
@@ -45,25 +52,18 @@ class _ImageSliderState extends State<ImageSlider> {
                     _currentPage = page;
                   })
                 },
-            children: (widget.imageUrls ?? [])
-                .map((imageUrl) => PlaceholderImage(
-                    image:
-                        imageUrl != null ? NetworkImage(imageUrl) : placeholder,
-                    placeholder: placeholder,
-                    fit: BoxFit.cover))
-                .toList(),
+            children: pages,
           )),
-      (widget.imageUrls != null && widget.imageUrls.length > 1)
-          ? Positioned.fill(
-              bottom: 5.0,
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: DotsIndicator(
-                    numberOfDots: widget.imageUrls.length,
-                    highlightedDot: _currentPage,
-                    hasShadow: true,
-                  )))
-          : null
-    ].where((value) => value != null).toList()));
+      if (widget.imageUrls.length > 1)
+        Positioned.fill(
+            bottom: 5.0,
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: DotsIndicator(
+                  numberOfDots: widget.imageUrls.length,
+                  highlightedDot: _currentPage,
+                  hasShadow: true,
+                )))
+    ]));
   }
 }

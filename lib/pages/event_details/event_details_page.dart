@@ -123,7 +123,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 4.0),
           child: Column(
               children: states
-                  .map((state) => IntrinsicHeight(
+                  .map((state) => Container(
+                height: 264,
                       child: TalkCard(
                           speakerImageUrl: state.speakerImageUrl,
                           speakerName: state.speakerName,
