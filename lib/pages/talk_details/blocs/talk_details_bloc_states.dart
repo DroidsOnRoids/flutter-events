@@ -14,19 +14,23 @@
 //  limitations under the License.
 //
 
-import 'package:events/models/photo.dart';
-import 'package:meta/meta.dart';
+class TalkDetailsBlocState {
+  TalkDetailsBlocState(
+      {this.speakerId,
+      this.speakerImageUrl,
+      this.speakerName,
+      this.speakerJob,
+      this.date,
+      this.time,
+      this.talkTitle,
+      this.talkDescription});
 
-abstract class PhotosListBlocType {
-  factory PhotosListBlocType.build({List<Photo> photos}) =>
-      PhotosListBloc(photos: photos);
-
-  List<Photo> get photos;
-}
-
-class PhotosListBloc implements PhotosListBlocType {
-  PhotosListBloc({@required this.photos}) : assert(photos != null);
-
-  @override
-  final List<Photo> photos; // TODO: BLOC should not expose API models
+  final int speakerId;
+  final String speakerImageUrl;
+  final String speakerName;
+  final String speakerJob;
+  final String date;
+  final String time;
+  final String talkTitle;
+  final String talkDescription;
 }

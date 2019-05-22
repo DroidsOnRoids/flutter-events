@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 
+import 'package:events/pages/talk_details/blocs/talk_details_bloc_states.dart';
 import 'package:events/pages/talk_details/talk_details_page.dart';
 import 'package:events/utils/app_colors.dart';
 import 'package:events/widgets/navigation_bar.dart';
@@ -106,7 +107,8 @@ class _SpeakerDetailsPageState extends State<SpeakerDetailsPage> {
                 child: ClipOval(
                     child: PlaceholderImage(
                         image: NetworkImage(state.avatarUrl),
-                        placeholder: AssetImage('images/event_placeholder.png'),  // TODO: Replace placeholder
+                        placeholder: AssetImage('images/event_placeholder.png'),
+                        // TODO: Replace placeholder
                         width: 90,
                         height: 90,
                         fit: BoxFit.cover)),
@@ -184,7 +186,22 @@ class _SpeakerDetailsPageState extends State<SpeakerDetailsPage> {
                                     context,
                                     CupertinoPageRoute(
                                         builder: (context) =>
-                                            TalkDetailsPage.build()));
+                                            TalkDetailsPage.build(
+                                                // TODO: Refactor data passing
+                                                state: TalkDetailsBlocState(
+                                                    speakerId: 0,
+                                                    speakerImageUrl: cardState
+                                                        .speakerImageUrl,
+                                                    speakerName:
+                                                        cardState.speakerName,
+                                                    speakerJob:
+                                                        cardState.speakerJob,
+                                                    date: '02.03.2017',
+                                                    time: '07:00 CET',
+                                                    talkTitle:
+                                                        cardState.talkTitle,
+                                                    talkDescription: cardState
+                                                        .talkDescription))));
                               }));
                     },
                     controller: PageController(viewportFraction: 0.95))),

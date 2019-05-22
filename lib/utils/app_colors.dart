@@ -26,6 +26,7 @@ class AppColors extends InheritedWidget {
   final whitishGray = const Color(0xffdee5ef);
   final lightGray = const Color(0xffd7e0eb);
   final darkGray = const Color(0xff989ea6);
+  final darkerGray = const Color(0xff6e7175);
   final bluishGray = const Color(0xff848f9e);
   final black = const Color(0xff000000);
 
